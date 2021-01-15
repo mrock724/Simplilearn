@@ -46,11 +46,11 @@ public class FileOperations {
 			System.out.println("\nFile does not exist in " + filePath);
 			return;
 		}
-		String newFilePath = App.FOLDER + "/" + path.getFileName();
+		String newFilePath = App.TMPDIR + "/" + path.getFileName();
 		int inc = 0;
 		while(Files.exists(Paths.get(newFilePath))) {
 			inc++;
-			newFilePath = App.FOLDER + "/" + path.getFileName() + "_" + inc;
+			newFilePath = App.TMPDIR + "/" + path.getFileName() + "_" + inc;
 		}
 		try {
 			Files.copy(path, Paths.get(newFilePath));

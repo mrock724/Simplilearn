@@ -11,7 +11,7 @@ import java.util.Scanner;
 
 public class App {
 	
-	final static String FOLDER = "C:/Users/mrock/temp";
+	final static String TMPDIR = "C:/temp";
 	
 	static Scanner scanner = new Scanner(System.in);
 	

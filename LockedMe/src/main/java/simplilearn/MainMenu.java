@@ -37,7 +37,7 @@ public class MainMenu {
 	
 	private static void showFilesInAscOrder() {
 		System.out.println("\nShowing files in ascending order");
-		File[] files = new File(App.FOLDER).listFiles();
+		File[] files = new File(App.TMPDIR).listFiles();
 		Set<String> sorted = new TreeSet<>(); // creates TreeSet in which the files are placed
 		for(File file: files) {
 			if(!file.isFile()) {
