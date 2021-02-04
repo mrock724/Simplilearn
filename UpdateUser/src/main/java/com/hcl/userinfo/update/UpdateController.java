@@ -39,7 +39,7 @@ public class UpdateController {
     String showSearch() {
         String output = "<form action='' method='POST'>";
         output += "<h2>Enter the ID number for which to search</h2>";
-        output += "ID: <input id='id' type='text' /><br />";
+        output += "ID: <input name='id' type='text' /><br />";
         output += "<input type='submit' />";
         output += "</form>";
         return output;
@@ -48,8 +48,8 @@ public class UpdateController {
     @PostMapping(path = "/search")
     String searchUser(@ModelAttribute UserEntity givenUser) {
         String output = "";
-    	if (givenUser == null || givenUser.getId() == null) {
-            //throw new RuntimeException("Name field cannot be left blank");
+        if (givenUser == null || givenUser.getId() == null) {
+            //throw new RuntimeException("ID field cannot be left blank");
             output = "ID field cannot be left blank";
         } else {
         	Iterable<UserEntity> savedUser = userEntityRepo.findAll();
@@ -69,7 +69,7 @@ public class UpdateController {
     String showUpdate() {
         String output = "<form action='' method='POST'>";
         output += "<p>Enter the ID of the user to be updated</p>";
-        output += "ID: <input id='id' type='text' /><br />";
+        output += "ID: <input name='id' type='text' /><br />";
         output += "<p>Enter the new name for the user</p>";
         output += "Name: <input name='name' type='text' /><br />";
         output += "<input type='submit' />";
