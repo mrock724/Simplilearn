@@ -1,5 +1,7 @@
 package com.hcl.userinfo.update;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -9,6 +11,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class UpdateController {
 
+	Logger logger = LoggerFactory.getLogger(UpdateController.class);
+	
     @Autowired
     UserEntityRepo userEntityRepo;
 
@@ -28,9 +32,11 @@ public class UpdateController {
     	if (user == null || user.getName() == null) {
             //throw new RuntimeException("Name field cannot be left blank");
             output = "Name field cannot be left blank";
+            logger.error("Name was left blank");
         } else {
         	userEntityRepo.save(user);
         	output = "Created new user at ID number: " + user.getId();
+        	logger.info("Created user at ID: " + user.getId());
         }
     	return output;
     }
@@ -51,6 +57,7 @@ public class UpdateController {
         if (givenUser == null || givenUser.getId() == null) {
             //throw new RuntimeException("ID field cannot be left blank");
             output = "ID field cannot be left blank";
+            logger.error("ID was left blank");
         } else {
         	Iterable<UserEntity> savedUser = userEntityRepo.findAll();
             for (UserEntity u: savedUser) {
@@ -61,6 +68,7 @@ public class UpdateController {
                 }
             }
         	output = "Error: invalid ID number";
+        	logger.error("Invalid ID number");
         }
     	return output;
     }
@@ -83,6 +91,7 @@ public class UpdateController {
         if (givenUser == null || givenUser.getId() == null ||givenUser.getName() == null ) {
             //throw new RuntimeException("Name field cannot be left blank");
             output = "Fields cannot be left blank";
+            logger.error("ID and/or name left blank");
         } else {
         	Iterable<UserEntity> savedUser = userEntityRepo.findAll();
             for (UserEntity u: savedUser) {
@@ -92,10 +101,12 @@ public class UpdateController {
                 	output += "<p>New Name: " + givenUser.getName() + "</p>";
                 	u.setName(givenUser.getName());
                 	userEntityRepo.save(u);
+                	logger.info("Updated user at ID: " + u.getId());
                 	return output;
                 }
             }
         	output = "Error: invalid ID number";
+        	logger.error("Invalid ID number");
         }
     	return output;
     }
