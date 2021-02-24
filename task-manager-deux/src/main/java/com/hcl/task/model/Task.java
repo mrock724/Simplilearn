@@ -31,12 +31,12 @@ public class Task {
     @NotEmpty(message = "*Please provide a name")
     private String name;
 	
-	@Column(name = "startDate")
+	@Column(name = "start")
     //@NotEmpty(message = "*Please provide a start date")
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date start;
 	
-	@Column(name = "endDate")
+	@Column(name = "end")
     //@NotEmpty(message = "*Please provide an end date")
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date end;

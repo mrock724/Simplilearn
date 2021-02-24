@@ -39,10 +39,28 @@
 
     <div class="panel-group" style="margin-top:40px">
         <div class="panel panel-primary">
-            <div class="panel-heading">
-                <span th:utext="${userName}"></span>
-            </div>
-            <p class="admin-message-text text-center" th:utext="${adminMessage}"></p>
+            <table border="1">
+			    <tr>
+			        <th>ID Number</th>
+			        <th>Task Name</th>
+			        <th>Start Date</th>
+			        <th>End Date</th>
+			        <th>Description</th>
+			        <th>Email Address</th>
+			        <th>Severity Level</th>
+			        <th>Assigned User</th>
+			    </tr>
+			    <tr th:each = "task: ${tasks}">
+			        <td th:text="${task.id}"></td>
+			        <td th:text="${task.name}"></td>
+			        <td th:text="${task.start}"></td>
+			        <td th:text="${task.end}"></td>
+			        <td th:text="${task.description}"></td>
+			        <td th:text="${task.email}"></td>
+			        <td th:text="${task.severity}"></td>
+			        <td th:text="${task.user_task}"></td>
+			    </tr>
+			</table>
         </div>
     </div>
 
