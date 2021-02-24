@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Create Task</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/home.css}"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<form th:action="@{/logout}" method="get">
+        <button class="btn btn-md btn-danger btn-block" name="registration"
+                type="Submit">Logout</button>
+    </form>
+    <form th:action="@{/admin/home}" method="get">
+	    <button class="btn btn-md btn-warning btn-block"
+	    		type="Submit">Home</button>
+	</form>
+    <form th:action="@{/delete-task}" method="get">
+	    <button class="btn btn-md btn-warning btn-block"
+	    		type="Submit">Delete Task</button>
+	</form>
+	<form th:action="@{/display-tasks}" method="get">
+	    <button class="btn btn-md btn-warning btn-block"
+	    		type="Submit">Display Tasks</button>
+	</form>
+	<form th:action="@{/update-task}" method="get">
+	    <button class="btn btn-md btn-warning btn-block"
+	    		type="Submit">Update Task</button>
+	</form>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <form autocomplete="off" action="#" th:action="@{/create-task}"
+                  th:object="${task}" method="post" class="form-horizontal"
+                  role="form">
+                <h2>Task Creation Form</h2>
+                <div class="form-group">
+                    <div class="col-sm-9">
+                        <input type="text" th:field="*{name}" placeholder="Task Name"
+                               class="form-control"/> <label
+                            th:if="${#fields.hasErrors('name')}" th:errors="*{name}"
+                            class="validation-message"></label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-9">
+                        <input type="date" th:field="*{start}"
+                               class="form-control"/> <label
+                            th:if="${#fields.hasErrors('start')}" th:errors="*{start}"
+                            class="validation-message"></label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-9">
+                        <input type="date" th:field="*{end}"
+                               class="form-control"/> <label
+                            th:if="${#fields.hasErrors('end')}" th:errors="*{end}"
+                            class="validation-message"></label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-9">
+                        <input type="text" th:field="*{description}" placeholder="Task Description"
+                               class="form-control"/> <label
+                            th:if="${#fields.hasErrors('description')}" th:errors="*{description}"
+                            class="validation-message"></label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-9">
+                        <input type="text" th:field="*{email}" placeholder="Email Address"
+                               class="form-control"/> <label
+                            th:if="${#fields.hasErrors('email')}" th:errors="*{email}"
+                            class="validation-message"></label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-9">
+                        <select th:field="*{severity}">
+                        <option th:value="'Low'" th:text="Low"></option>
+                        <option th:value="'Medium'" th:text="Medium"></option>
+                        <option th:value="'High'" th:text="High"></option>
+                        </select>
+                               <label th:if="${#fields.hasErrors('severity')}" th:errors="*{severity}"
+                            class="validation-message"></label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-9">
+                        <input type="text" th:field="*{user_task}" placeholder="User Name"
+                               class="form-control"/> <label
+                            th:if="${#fields.hasErrors('user_task')}" th:errors="*{user_task}"
+                            class="validation-message"></label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-9">
+                        <button type="submit" class="btn btn-primary btn-block">Create Task</button>
+                    </div>
+                </div>
+                <h2><span class="text-success" th:utext="${successMessage}"></span></h2>
+            </form>
+        </div>
+    </div>
+</div>
+<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+<script th:src="@{assets/bootstrap-datepicker/js/bootstrap-datepicker.js}"></script>
+<script>
+    $('.input-group.date').datepicker({
+        autoclose: true,
+        todayHighlight: true
+    });
+</script>
+</body>
+</html>
